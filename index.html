@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 Mart — Never Out of Stock | Mirema Springs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --cream:   #F5EFE0;
+  --warm:    #EDE4CC;
+  --paper:   #FAF6EC;
+  --bark:    #3B2A1A;
+  --soil:    #5C3D1E;
+  --rust:    #C94F2C;
+  --rust-lt: #E8714E;
+  --green:   #2D6A4F;
+  --green-lt:#52B788;
+  --honey:   #E9A825;
+  --sand:    #C8A96E;
+
+  --ff-display: 'Fraunces', serif;
+  --ff-body:    'DM Sans', sans-serif;
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--paper);
+  color: var(--bark);
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw;
+  height: 64px;
+  background: rgba(245,239,224,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(92,61,30,0.1);
+}
+.nav-logo {
+  font-family: var(--ff-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--rust);
+  letter-spacing: -0.03em;
+}
+.nav-logo span { color: var(--bark); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--soil);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--rust); }
+.nav-cta {
+  background: var(--rust);
+  color: #fff !important;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--rust-lt) !important; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 80px 5vw 0;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background texture circles */
+#hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,79,44,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+#hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 10%;
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(45,106,79,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-text { position: relative; z-index: 2; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-badge::before { content: '📍'; font-size: 0.85rem; }
+
+h1.hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--bark);
+  margin-bottom: 12px;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+h1.hero-title .accent { color: var(--rust); font-style: italic; }
+
+.hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 500;
+  color: var(--soil);
+  line-height: 1.5;
+  max-width: 480px;
+  margin-bottom: 36px;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--rust);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 4px 20px rgba(201,79,44,0.35);
+}
+.btn-primary:hover { transform: translateY(-2px); background: var(--rust-lt); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  color: var(--bark);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 2px solid var(--sand);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-secondary:hover { border-color: var(--bark); }
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(92,61,30,0.12);
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+.stat-num {
+  font-family: var(--ff-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--rust);
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--soil);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Hero illustration side */
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 500px;
+  animation: fadeIn 1s 0.3s ease both;
+}
+
+.big-404 {
+  font-family: var(--ff-display);
+  font-size: clamp(8rem, 16vw, 14rem);
+  font-weight: 900;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 3px rgba(201,79,44,0.2);
+  line-height: 1;
+  position: absolute;
+  user-select: none;
+  letter-spacing: -0.04em;
+}
+
+.shelf-card {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(59,42,26,0.15), 0 4px 12px rgba(59,42,26,0.08);
+  width: 280px;
+  text-align: center;
+  transform: rotate(2deg);
+  animation: float 4s ease-in-out infinite;
+}
+.shelf-card .big-emoji { font-size: 4rem; margin-bottom: 8px; }
+.shelf-card h3 {
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bark);
+}
+.shelf-card p { font-size: 0.78rem; color: var(--soil); margin-top: 4px; }
+.in-stock-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: #D4EDDA; color: var(--green);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 4px 10px; border-radius: 999px;
+  margin-top: 12px; letter-spacing: 0.08em;
+}
+.in-stock-badge::before { content: '✓'; font-weight: 900; }
+
+.floating-tags {
+  position: absolute;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.ftag {
+  position: absolute;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--bark);
+  box-shadow: 0 4px 16px rgba(59,42,26,0.12);
+  white-space: nowrap;
+}
+.ftag:nth-child(1) { top: 15%; left: 2%; animation: float 3.5s 0.2s ease-in-out infinite; }
+.ftag:nth-child(2) { top: 60%; right: 0%; animation: float 4.2s 0.8s ease-in-out infinite; }
+.ftag:nth-child(3) { bottom: 18%; left: 8%; animation: float 3.8s 0.4s ease-in-out infinite; }
+.ftag:nth-child(4) { top: 28%; right: 4%; animation: float 4.5s 1s ease-in-out infinite; }
+
+/* ═══════════════════════════════════════════
+   MARQUEE TICKER
+═══════════════════════════════════════════ */
+.ticker {
+  background: var(--rust);
+  color: #fff;
+  padding: 12px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-flex;
+  animation: marquee 25s linear infinite;
+}
+.ticker-item {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0 40px;
+}
+.ticker-item::before { content: '✦'; margin-right: 16px; opacity: 0.7; }
+
+/* ═══════════════════════════════════════════
+   SECTION SHARED
+═══════════════════════════════════════════ */
+section { padding: 80px 5vw; }
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 12px;
+}
+.section-label::before { content: ''; width: 24px; height: 2px; background: var(--rust); display: inline-block; }
+
+h2.sec-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--bark);
+  margin-bottom: 16px;
+}
+.sec-sub {
+  font-size: 1rem;
+  color: var(--soil);
+  max-width: 500px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+/* ═══════════════════════════════════════════
+   CATEGORIES
+═══════════════════════════════════════════ */
+#categories { background: var(--warm); }
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.cat-card {
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 24px 16px;
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: default;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.cat-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sand);
+  box-shadow: 0 8px 24px rgba(59,42,26,0.1);
+}
+.cat-icon { font-size: 2.4rem; margin-bottom: 10px; }
+.cat-name {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--bark);
+}
+.cat-count {
+  font-size: 0.7rem;
+  color: var(--sand);
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════
+   WHY US
+═══════════════════════════════════════════ */
+#why {
+  background: var(--bark);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+#why::before {
+  content: '404';
+  position: absolute;
+  right: -40px; bottom: -60px;
+  font-family: var(--ff-display);
+  font-size: 20rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+#why .section-label { color: var(--honey); }
+#why .section-label::before { background: var(--honey); }
+#why h2.sec-title { color: var(--cream); }
+#why .sec-sub { color: rgba(245,239,224,0.65); }
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+.why-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 28px 24px;
+  transition: background 0.25s, transform 0.25s;
+}
+.why-card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-3px);
+}
+.why-icon {
+  font-size: 2rem;
+  margin-bottom: 14px;
+  display: block;
+}
+.why-title {
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.why-desc {
+  font-size: 0.82rem;
+  color: rgba(245,239,224,0.6);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   DELIVERY
+═══════════════════════════════════════════ */
+#delivery { background: var(--cream); }
+
+.delivery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.del-card {
+  border-radius: 24px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.del-card.pickup {
+  background: var(--green);
+  color: #fff;
+}
+.del-card.delivery {
+  background: var(--honey);
+  color: var(--bark);
+}
+.del-card .del-icon { font-size: 2.8rem; margin-bottom: 14px; }
+.del-card h3 {
+  font-family: var(--ff-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.del-card p { font-size: 0.85rem; line-height: 1.6; opacity: 0.85; max-width: 320px; }
+.del-badge {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.del-card.pickup .del-badge { background: rgba(255,255,255,0.2); color: #fff; }
+.del-card.delivery .del-badge { background: rgba(59,42,26,0.15); color: var(--bark); }
+.del-card .del-bg-num {
+  position: absolute;
+  right: -20px; bottom: -30px;
+  font-family: var(--ff-display);
+  font-size: 8rem;
+  font-weight: 900;
+  opacity: 0.1;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ═══════════════════════════════════════════
+   LOCATION
+═══════════════════════════════════════════ */
+#location { background: var(--warm); }
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.map-placeholder {
+  background: var(--cream);
+  border-radius: 24px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--sand);
+  gap: 12px;
+  text-align: center;
+  padding: 24px;
+}
+.map-placeholder .map-icon { font-size: 3rem; }
+.map-placeholder h4 {
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bark);
+}
+.map-placeholder p { font-size: 0.78rem; color: var(--soil); line-height: 1.5; }
+.map-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--rust); color: #fff;
+  padding: 10px 20px; border-radius: 999px;
+  font-weight: 700; font-size: 0.8rem;
+  text-decoration: none; margin-top: 8px;
+  transition: background 0.2s;
+}
+.map-link:hover { background: var(--rust-lt); }
+
+.loc-details { display: flex; flex-direction: column; gap: 20px; }
+.loc-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.loc-dot {
+  width: 40px; height: 40px;
+  background: var(--cream);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(59,42,26,0.1);
+}
+.loc-text h4 {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--bark);
+  margin-bottom: 2px;
+}
+.loc-text p { font-size: 0.78rem; color: var(--soil); line-height: 1.5; }
+
+/* ═══════════════════════════════════════════
+   CONTACT / WHATSAPP CTA
+═══════════════════════════════════════════ */
+#contact {
+  background: var(--rust);
+  text-align: center;
+  padding: 80px 5vw;
+  position: relative;
+  overflow: hidden;
+}
+#contact::before {
+  content: '✦';
+  position: absolute; top: -40px; left: 5%;
+  font-size: 10rem; color: rgba(255,255,255,0.05);
+  font-family: var(--ff-display);
+}
+#contact::after {
+  content: '✦';
+  position: absolute; bottom: -40px; right: 5%;
+  font-size: 10rem; color: rgba(255,255,255,0.05);
+  font-family: var(--ff-display);
+}
+#contact h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+#contact h2 em { font-style: italic; color: var(--honey); }
+#contact p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+  max-width: 480px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+.wa-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #25D366;
+  color: #fff;
+  padding: 16px 36px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin: 0 8px 12px;
+}
+.wa-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.25); }
+.wa-btn .wa-icon { font-size: 1.3rem; }
+.call-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 2px solid rgba(255,255,255,0.3);
+  transition: background 0.2s;
+  margin: 0 8px 12px;
+}
+.call-btn:hover { background: rgba(255,255,255,0.22); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--bark);
+  color: rgba(245,239,224,0.5);
+  padding: 28px 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 500;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-logo {
+  font-family: var(--ff-display);
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--rust);
+}
+.footer-logo span { color: var(--cream); }
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(2deg); }
+  50%       { transform: translateY(-12px) rotate(2deg); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  #hero { grid-template-columns: 1fr; padding-top: 96px; text-align: center; }
+  .hero-visual { display: none; }
+  .hero-stats { justify-content: center; }
+  .hero-buttons { justify-content: center; }
+  .hero-sub { margin: 0 auto 36px; }
+  .delivery-grid, .location-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+  .nav-links { display: none; }
+}
+
+@media (max-width: 600px) {
+  .cat-grid { grid-template-columns: repeat(3, 1fr); }
+  .why-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">404<span>Mart</span></div>
+  <ul class="nav-links">
+    <li><a href="#categories">Shop</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#delivery">Delivery</a></li>
+    <li><a href="#location">Find Us</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Now Open · Mirema Springs, Nairobi</div>
+    <h1 class="hero-title">
+      Never<br><span class="accent">Out of Stock.</span>
+    </h1>
+    <p class="hero-sub">
+      Your neighbourhood supermarket right here in Mirema Springs — no more 10-minute walks to Jaza or Powerstar. Everything you need, 5 minutes away.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">
+        <span>🛒</span> Order on WhatsApp
+      </a>
+      <a href="#categories" class="btn-secondary">
+        <span>👀</span> Browse Products
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-lbl">Products</div>
+      </div>
+      <div>
+        <div class="stat-num">5 min</div>
+        <div class="stat-lbl">From your door</div>
+      </div>
+      <div>
+        <div class="stat-num">7 days</div>
+        <div class="stat-lbl">Always open</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="big-404">404</div>
+    <div class="shelf-card">
+      <div class="big-emoji">🛍️</div>
+      <h3>Today's Freshness</h3>
+      <p>Produce, dairy & more — restocked daily</p>
+      <span class="in-stock-badge">In Stock</span>
+    </div>
+    <div class="floating-tags">
+      <div class="ftag">🥛 Milk — KSh 65</div>
+      <div class="ftag">🍞 Bread — KSh 55</div>
+      <div class="ftag">🥚 Eggs (tray) — KSh 380</div>
+      <div class="ftag">📦 Free delivery nearby</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Fresh Produce Daily</span>
+    <span class="ticker-item">Groceries & Household</span>
+    <span class="ticker-item">Toiletries & Personal Care</span>
+    <span class="ticker-item">Drinks & Beverages</span>
+    <span class="ticker-item">Snacks & Confectionery</span>
+    <span class="ticker-item">Baby & Kids Products</span>
+    <span class="ticker-item">Cleaning Supplies</span>
+    <span class="ticker-item">Never Out of Stock</span>
+    <!-- repeat for seamless loop -->
+    <span class="ticker-item">Fresh Produce Daily</span>
+    <span class="ticker-item">Groceries & Household</span>
+    <span class="ticker-item">Toiletries & Personal Care</span>
+    <span class="ticker-item">Drinks & Beverages</span>
+    <span class="ticker-item">Snacks & Confectionery</span>
+    <span class="ticker-item">Baby & Kids Products</span>
+    <span class="ticker-item">Cleaning Supplies</span>
+    <span class="ticker-item">Never Out of Stock</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="section-label">What We Stock</div>
+  <h2 class="sec-title">Everything<br>under one roof.</h2>
+  <p class="sec-sub">From your morning uji to your evening ugali — we've got the whole household covered.</p>
+
+  <div class="cat-grid reveal">
+    <div class="cat-card"><div class="cat-icon">🥦</div><div class="cat-name">Fresh Produce</div><div class="cat-count">Veg, Fruits & More</div></div>
+    <div class="cat-card"><div class="cat-icon">🥛</div><div class="cat-name">Dairy & Eggs</div><div class="cat-count">Milk, Yoghurt, Eggs</div></div>
+    <div class="cat-card"><div class="cat-icon">🍞</div><div class="cat-name">Bakery</div><div class="cat-count">Bread, Mandazi & More</div></div>
+    <div class="cat-card"><div class="cat-icon">🍚</div><div class="cat-name">Dry Goods</div><div class="cat-count">Rice, Flour, Unga</div></div>
+    <div class="cat-card"><div class="cat-icon">🧴</div><div class="cat-name">Toiletries</div><div class="cat-count">Soaps, Lotions & More</div></div>
+    <div class="cat-card"><div class="cat-icon">🧹</div><div class="cat-name">Cleaning</div><div class="cat-count">Detergents & Supplies</div></div>
+    <div class="cat-card"><div class="cat-icon">🥤</div><div class="cat-name">Beverages</div><div class="cat-count">Juices, Sodas & Water</div></div>
+    <div class="cat-card"><div class="cat-icon">🍫</div><div class="cat-name">Snacks</div><div class="cat-count">Crisps, Biscuits & More</div></div>
+    <div class="cat-card"><div class="cat-icon">👶</div><div class="cat-name">Baby Care</div><div class="cat-count">Diapers, Wipes & Food</div></div>
+    <div class="cat-card"><div class="cat-icon">🐾</div><div class="cat-name">Pet Food</div><div class="cat-count">For your furry ones</div></div>
+    <div class="cat-card"><div class="cat-icon">💊</div><div class="cat-name">Health & OTC</div><div class="cat-count">Basic meds & vitamins</div></div>
+    <div class="cat-card"><div class="cat-icon">🔌</div><div class="cat-name">Stationery</div><div class="cat-count">Pens, Books & Batteries</div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-label">Why 404 Mart</div>
+  <h2 class="sec-title">Shopping should<br>never be a <em style="font-style:italic;color:var(--honey)">mission.</em></h2>
+  <p class="sec-sub">We exist because Mirema Springs deserved better than a 10-minute walk outside the estate.</p>
+
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <span class="why-icon">📍</span>
+      <div class="why-title">Right Inside Mirema Springs</div>
+      <p class="why-desc">No more trekking to Mirema Drive or all the way to Copy Kamiti Road. We're in your backyard.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🕖</span>
+      <div class="why-title">Open 7 Days a Week</div>
+      <p class="why-desc">Early mornings, late evenings — whenever you need us, we're here. Including weekends and holidays.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">💰</span>
+      <div class="why-title">Fair Neighbourhood Prices</div>
+      <p class="why-desc">Competitive pricing for the community. No inflated convenience surcharges — just honest prices.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">✅</span>
+      <div class="why-title">Never Out of Stock</div>
+      <p class="why-desc">Daily restocking means the shelves stay full. If we ever run out, we'll tell you where to find it.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🤝</span>
+      <div class="why-title">A Store That Knows You</div>
+      <p class="why-desc">We're neighbours, not a corporation. Friendly service, small requests welcome, familiar faces every time.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">📲</span>
+      <div class="why-title">WhatsApp Orders</div>
+      <p class="why-desc">Too busy to come in? Just WhatsApp your list and we'll have it ready or deliver to your door.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section id="delivery">
+  <div class="section-label">How You Shop</div>
+  <h2 class="sec-title">Your way,<br>your schedule.</h2>
+  <p class="sec-sub">Walk in, call ahead, or get it delivered — we work around you.</p>
+
+  <div class="delivery-grid reveal">
+    <div class="del-card pickup">
+      <div class="del-icon">🚶</div>
+      <h3>Walk-In & Pick-Up</h3>
+      <p>Come in anytime. Browse the shelves or order ahead on WhatsApp and collect when ready — no waiting.</p>
+      <span class="del-badge">Open 7 Days · 7am – 9pm</span>
+      <div class="del-bg-num">In</div>
+    </div>
+    <div class="del-card delivery">
+      <div class="del-icon">🛵</div>
+      <h3>Home Delivery</h3>
+      <p>We deliver within Mirema Springs estate. Send your list on WhatsApp, confirm your address, and we'll bring it to you.</p>
+      <span class="del-badge">Within the Estate · Fast</span>
+      <div class="del-bg-num">🛵</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="section-label">Find Us</div>
+  <h2 class="sec-title">We're right<br>in Mirema Springs.</h2>
+  <p class="sec-sub">No long walks. No leaving the estate. Just a short stroll from your front door.</p>
+
+  <div class="location-grid reveal">
+    <div class="map-placeholder">
+      <div class="map-icon">🗺️</div>
+      <h4>404 Mart — Mirema Springs</h4>
+      <p>Inside Mirema Springs Estate<br>Off Mirema Drive, Nairobi</p>
+      <a href="https://maps.google.com/?q=Mirema+Springs+Nairobi" target="_blank" class="map-link">📍 Open in Google Maps</a>
+    </div>
+    <div class="loc-details">
+      <div class="loc-item">
+        <div class="loc-dot">📍</div>
+        <div class="loc-text">
+          <h4>Address</h4>
+          <p>Mirema Springs Estate, Off Mirema Drive<br>Kasarani, Nairobi</p>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-dot">🕖</div>
+        <div class="loc-text">
+          <h4>Opening Hours</h4>
+          <p>Monday – Sunday: 7:00 AM – 9:00 PM<br>Public Holidays: 8:00 AM – 6:00 PM</p>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-dot">🚶</div>
+        <div class="loc-text">
+          <h4>Getting Here</h4>
+          <p>No matatu needed — we're inside the estate.<br>Under 5 minutes walk for most residents.</p>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-dot">📞</div>
+        <div class="loc-text">
+          <h4>Call or WhatsApp</h4>
+          <p>+254 700 000 000<br>We respond fast on WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section id="contact">
+  <h2>Can't find it anywhere?<br><em>Error 404 — try us.</em></h2>
+  <p>Drop us a WhatsApp with your shopping list and we'll sort you out — delivery or ready-to-collect in minutes.</p>
+  <div>
+    <a href="https://wa.me/254700000000?text=Hi%20404%20Mart%2C%20I'd%20like%20to%20order..." class="wa-btn" target="_blank">
+      <span class="wa-icon">💬</span> Order on WhatsApp
+    </a>
+    <a href="tel:+254700000000" class="call-btn">
+      📞 Call the Store
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">404<span>Mart</span></div>
+  <div>© 2025 404 Mart · Mirema Springs, Nairobi</div>
+  <div>Never Out of Stock ✦</div>
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(r => obs.observe(r));
+</script>
+</body>
+</html>
